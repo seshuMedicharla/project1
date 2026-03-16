@@ -2,6 +2,7 @@ require("dotenv").config();
 
 const express = require("express");
 const cors = require("cors");
+const helmet = require("helmet");
 const mongoose = require("mongoose");
 const rateLimit = require("express-rate-limit");
 const { createProxyMiddleware } = require("http-proxy-middleware");
@@ -53,6 +54,7 @@ function createServiceProxy(targetLabel, pathRewrite) {
 }
 
 app.use(cors());
+app.use(helmet());
 app.use(limiter);
 app.use((req, _res, next) => {
   console.log(`[gateway] incoming ${req.method} ${req.originalUrl}`);
