@@ -1,0 +1,4 @@
+scheme-service listening on port 5005
+scheme-service connected to MongoDB
+[scheme-service] incoming GET /api/schemes/
+[scheme-service] fetching schemes

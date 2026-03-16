@@ -1,0 +1,3 @@
+Gateway running on port 5000
+Gateway connected to MongoDB
+[gateway] incoming POST /api/schemes/create

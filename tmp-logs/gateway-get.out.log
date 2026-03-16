@@ -1,0 +1,4 @@
+Gateway running on port 5000
+Gateway connected to MongoDB
+[gateway] incoming GET /api/schemes
+[gateway] forwarding GET /api/schemes -> http://localhost:5005/api/schemes/

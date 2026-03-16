@@ -1,0 +1,5 @@
+scheme-service listening on port 5005
+scheme-service connected to MongoDB
+[scheme-service] incoming POST /api/schemes/create
+[scheme-service] processing scheme create request
+[scheme-service] scheme created with id 69b82d46919fdbca73170a57
