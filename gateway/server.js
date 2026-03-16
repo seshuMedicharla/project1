@@ -3,6 +3,7 @@ require("dotenv").config();
 const express = require("express");
 const cors = require("cors");
 const mongoose = require("mongoose");
+const rateLimit = require("express-rate-limit");
 const { createProxyMiddleware } = require("http-proxy-middleware");
 
 const app = express();
@@ -12,6 +13,15 @@ const MONGODB_URI =
   process.env.MONGODB_URI || "mongodb://127.0.0.1:27017/civicshield";
 const INTERNAL_SERVICE_TOKEN =
   process.env.INTERNAL_SERVICE_TOKEN || "civicshield_internal_secure_token";
+
+const limiter = rateLimit({
+  windowMs: 60 * 1000,
+  max: 100,
+  message: {
+    success: false,
+    message: "Too many requests. Possible DDoS attempt detected."
+  }
+});
 
 function createServiceProxy(targetLabel, pathRewrite) {
   return createProxyMiddleware({
@@ -43,6 +53,7 @@ function createServiceProxy(targetLabel, pathRewrite) {
 }
 
 app.use(cors());
+app.use(limiter);
 app.use((req, _res, next) => {
   console.log(`[gateway] incoming ${req.method} ${req.originalUrl}`);
   next();
